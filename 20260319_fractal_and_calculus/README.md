@@ -9,3 +9,8 @@ $ julia 3d_calculus_anim.jl output.mp4
 $ julia fractal_and_dimensions.jl output.png
 ```
 のように、第1引数には出力ファイル名を付けて実行してください。
+
+# Dependencies
+GLMakie, Colors, GeometryBasics
+
+Julia のパッケージマネージャーでインストールしてください。
