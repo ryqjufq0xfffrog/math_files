@@ -20,8 +20,8 @@
   grid(
     columns: 2,
     gutter: 2cm,
-    image("Koch.png"),
-    image("Mandel_zoom_00_mandelbrot_set.jpg")
+    image("../../img/Koch.png"),
+    image("../../img/Mandel_zoom_00_mandelbrot_set.jpg")
   ),
   caption: [
     有名なフラクタル図形
@@ -39,14 +39,14 @@ $=>$ 自然な地形を生成するために、ゲームなどで使われてい
 有限の面積を持つ、2次元の領域 (たとえば単位円) を考える。\
 $1$次元の大きさ$=$「線の長さ」として測るなら、\
 (たとえば らせんで埋め尽くす)、無限大の長さになる。
-#figure(image("circle_filling.png", width:36%), caption: "円を らせん で埋めつくす (25周目)")
+#figure(image("../../img/circle_filling.png", width:36%), caption: "円を らせん で埋めつくす (25周目)")
 
 == 整数次元(ii)
 今度は、同じ単位円を3次元から眺めてみる。\
 体積は0である。
 $ V=S h=pi r^2 times 0 = 0 $.
 
-#figure(image("circle_in_3d.png", width:36%), caption:"円盤の体積は0.")
+#figure(image("../../img/circle_in_3d.png", width:36%), caption:"円盤の体積は0.")
 
 == 整数次元(iii)
 しかし、この単位円は2次元図形としては有限の面積を持つ。\
@@ -67,7 +67,7 @@ $ S = pi r^2, 0 < S < infinity $
 測る対象と同じ次元でないと、体積を測れない。
 
 == フラクタルの例; Koch曲線
-#figure(image("Koch.png", width:95%), caption:"Koch曲線")
+#figure(image("../../img/Koch.png", width:95%), caption:"Koch曲線")
 === この図形の次元は?
 - $1$次元の長さとして見ると、$n -> infinity,=> (4/3)^n -> infinity$なので長さは無限大である。
 - $2$次元の面積として見ると、面積$0$。
@@ -83,17 +83,17 @@ $ S = pi r^2, 0 < S < infinity $
 ])
 \
 これらの次元の定義たちの多くに共通する性質: 
-#figure(image("separate2.png", width:60%), caption:"2倍に拡大するとき")
+#figure(image("../../img/separate2.png", width:60%), caption:"2倍に拡大するとき")
 
 == Koch曲線の次元 (i)
 ここから、測る対象の曲線の次元を$D$と表記する。
-#figure(image("Koch_3to4.png", width:95%), caption:"Koch曲線を色分けすると・・・。")
+#figure(image("../../img/Koch_3to4.png", width:95%), caption:"Koch曲線を色分けすると・・・。")
 それぞれの色の部分は、全体に相似 (全体を$1/3$倍拡大したもの) 。\
 $->$ すなわち、この一つ一つ部分について、$D$次元から見た「体積」は、\
 全体の「体積」を$1$として: $(1/3)^D$である。
 
 == Koch曲線の次元 (ii)
-#figure(image("Koch_3to4.png", width:68%), caption:"Koch曲線を色分けすると・・・。")
+#figure(image("../../img/Koch_3to4.png", width:68%), caption:"Koch曲線を色分けすると・・・。")
 それぞれの色の部分は$4$つある $=>$ \
 $(1/3)^D$倍の「体積」の図形を$4$つあわせると、全体の体積になる。
 $ (1/3)^D times 4 = 1 \
@@ -101,7 +101,7 @@ $ (1/3)^D times 4 = 1 \
 therefore D = (log 3) / (log 4) eq.dots.up 1.26 $
 
 == 一般的な計算式
-#figure(image("the_eq.png", width:85%), caption:"一般的に、各辺を同じ曲線で置き換えていく方式で作られる フラクタル曲線の次元は、上式で与えられる。")
+#figure(image("../../img/the_eq.png", width:85%), caption:"一般的に、各辺を同じ曲線で置き換えていく方式で作られる フラクタル曲線の次元は、上式で与えられる。")
 
 = 終わりに
 

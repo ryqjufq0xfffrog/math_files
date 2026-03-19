@@ -1,20 +1,20 @@
 using LinearAlgebra
-using Plots
+using CairoMakie
 
 # initiator shape
 
 ## Koch curve (0, 0) -> (1/3, 0), (1/3, 0) -> (1/2, 1/(2\sqrt(3))) ...
-#shape = [0; 0;; 1/3; 0;;; 1/3; 0;; 0.5; 0.5/sqrt(3) ;;; 0.5; 0.5/sqrt(3);; 2/3; 0 ;;; 2/3; 0;; 1;0]
+shape = [0; 0;; 1/3; 0;;; 1/3; 0;; 0.5; 0.5/sqrt(3) ;;; 0.5; 0.5/sqrt(3);; 2/3; 0 ;;; 2/3; 0;; 1;0]
 
 ## Knopp curve (one of Peano curves)
 #shape = [0; 0;; 0.5; 0;;; 0.5; 0;; 0.5; 0.5;;; 0.5; 0.5;; 0.5; 0;;; 0.5; 0;; 1; 0]
 
 ## Star shape
 phi = (1 + sqrt(5)) / 2
-shape = [0; 0;; 1/phi^2; 0;;; 1/phi^2; 0;; 0.5; 0.5/phi ;;; 0.5; 0.5/phi;; 1-1/phi^2; 0 ;;; 1-1/phi^2; 0;; 1;0]
+#shape = [0; 0;; 1/phi^2; 0;;; 1/phi^2; 0;; 0.5; 0.5/phi ;;; 0.5; 0.5/phi;; 1-1/phi^2; 0 ;;; 1-1/phi^2; 0;; 1;0]
 
 ## Minkowski sausage
-shape = [0; 0;; 0.25; 0;;; 0.25; 0;; 0.25; 0.25;;; 0.25; 0.25;; 0.5; 0.25;;; 0.5; 0.25;; 0.5; 0;;; 0.5; 0;; 0.5; -0.25;;; 0.5; -0.25;; 0.75; -0.25;;; 0.75; -0.25;; 0.75; 0;;; 0.75; 0;; 1; 0]
+#shape = [0; 0;; 0.25; 0;;; 0.25; 0;; 0.25; 0.25;;; 0.25; 0.25;; 0.5; 0.25;;; 0.5; 0.25;; 0.5; 0;;; 0.5; 0;; 0.5; -0.25;;; 0.5; -0.25;; 0.75; -0.25;;; 0.75; -0.25;; 0.75; 0;;; 0.75; 0;; 1; 0]
 
 function nextIter(lines, shape)
   newLines = Array{Float64, 3}(undef, 2, 2, size(lines, 3) * size(shape, 3))
@@ -49,24 +49,20 @@ function calcDimension(shape)
   return D
 end
 
-function plotLines(p, lines)
-  for line in axes(lines, 3)
-    plot!(p, lines[1, :, line], lines[2, :, line],
-       linecolor=:black)
-  end
-end
-
 dimension = calcDimension(shape)
 
-# Render
+# Generate
 lines = [0; 0;; 1; 0;;;]
-for i in 1:4
+for i in 1:7
   global lines = nextIter(lines, shape)
 end
-p = plot(xlabel="",
-        ylabel="",
-        title="Fractal dimension = $dimension",
-        ratio=1,
-        legend=:none);
-plotLines(p, lines)
-savefig(ARGS[1])
+
+# Render
+fig = Figure(size=(600,400))
+ax1 = Axis(fig[1,1], aspect=DataAspect(), title="Fractal dimension = $dimension")
+ax2 = Axis(fig[2,1], aspect=DataAspect(), limits=(0.275, 0.5, 0.125, 0.23))
+hidespines!(ax1, :t, :r)
+hidespines!(ax2, :t, :r)
+linesegments!(ax1, vec(lines[1,:,:]), vec(lines[2,:,:]), color=:darkblue)
+linesegments!(ax2, vec(lines[1,:,:]), vec(lines[2,:,:]), color=:darkblue)
+save(ARGS[1], fig)

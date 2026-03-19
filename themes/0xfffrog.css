@@ -1,0 +1,27 @@
+/* @theme 0xfffrog */
+
+@import 'default';
+
+h1 {
+  color: #602040;
+}
+
+section {
+  padding: 25px 40px;
+}
+
+section::after {
+  content: attr(data-marpit-pagination) ' / ' attr(data-marpit-pagination-total);
+}
+
+strong{
+  white-space: nowrap;
+}
+
+.small{
+  font-size: smaller;
+}
+
+.flex_div{
+  display: flex;
+}
